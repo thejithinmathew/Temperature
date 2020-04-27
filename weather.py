@@ -27,6 +27,9 @@ def check(event=None):
             l.set(loc.text)
         else:
             l.set("Location not Found")
+        if (location2.get()==""):
+            l.set("Enter a Location")
+
         
         h.set("--")
         w.set("--")
@@ -49,8 +52,8 @@ def check(event=None):
             h.set(hp)
             w.set(p2)
             p.set(wp)
-    except(RuntimeError):
-        print(RuntimeError)
+    except:
+
         l.set("No Internet Connection")
         f.set("--")
         c.set("--")
@@ -72,6 +75,8 @@ root.title("Temperature")
 frame = tk.Frame(root)
 frame.pack(fill=tk.BOTH, expand=True)
 loca= tk.Entry(frame, textvariable=location2,justify='center')
+loca.insert(0, 'Location')
+loca.bind("<FocusIn>", lambda args: loca.delete('0', 'end'))
 root.bind('<Return>', check)
 button_convert = tk.Button(frame, text="Check", command=check)
 label_loca = tk.Label(frame, textvariable=l)
